@@ -23,6 +23,7 @@ namespace Esercizio2 {
                     j++;
                 }
             }
+             Console.WriteLine();
             j=0;
             for (int i = 1; i<parole.Length; i++) {
                 if (parole[i].CompareTo(parole[i-1])!=0) {
