@@ -1,7 +1,34 @@
-﻿@{
-    ViewBag.Title = "About";
-}
-<h2>@ViewBag.Title.</h2>
-<h3>@ViewBag.Message</h3>
+﻿@using DAO;
 
-<p>Use this area to provide additional information.</p>
+@{
+    ViewBag.Title = "I Nostri Menu";
+}
+<div class="container">
+    <h2>@ViewBag.Title</h2>
+    <h3 class="alert alert-warning">@ViewBag.Message</h3>
+
+    <table>
+        <thead class="thead-light">
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Menu</th>
+                <th scope="col">Giorno</th>
+            </tr>
+        </thead>
+        <tbody>
+            @{int i = 1;}
+            @foreach(Menu menu in ViewBag.Menus) {
+            <tr>
+                <th scope="col">@i</th>
+                <th scope="col">@menu.TipoPasto</th>
+                <th scope="col">
+                    @menu.Giorno
+                    <span class="badge" style="float:right; color:black; background-color:lightgray">
+                        @Html.ActionLink("Dettaglio","MenuGiorno",new { Id = menu.Id })
+                    </span>
+                </th>
+            </tr>
+                i++;
+            }
+    </table>
+</div>
