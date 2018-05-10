@@ -1,7 +1,24 @@
-﻿@{
-    ViewBag.Title = "About";
+﻿@using DAO;
+@{
+    ViewBag.Title = "Menu del Giorno";
 }
-<h2>@ViewBag.Title.</h2>
+<h2>@ViewBag.Title</h2>
 <h3>@ViewBag.Message</h3>
-
-<p>Use this area to provide additional information.</p>
+<table class="table table-striped">
+    <thead class="thead-light">
+        <tr>
+            <th scope="col">@ViewBag.Menu.TipoPasto</th>
+            <th scope="col">@ViewBag.Menu.Giorno.ToShortDateString()</th>
+        </tr>
+    </thead>
+    <tbody>
+        @{int i = 1;}
+        @foreach(Pietanza p in ViewBag.Menu.Pietanze) {
+            <tr>
+                <th scope="col">@p.TipoPietanza</th>
+                <th scope="col">@p.NomePietanza</th>
+            </tr>
+            i++;
+        }
+    </tbody>
+</table>

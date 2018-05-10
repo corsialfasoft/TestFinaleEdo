@@ -3,11 +3,33 @@
 @{
     ViewBag.Title = "I Nostri Menu";
 }
+
+<style>
+    table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+    }
+
+    td {
+        border: 1px solid #dddddd;
+        text-align: center;
+        padding: 8px;
+    }
+
+    tr:nth-child(even) {
+        background-color: #dddddd;
+    }
+
+    input {
+    }
+</style>
+
 <div class="container">
     <h2>@ViewBag.Title</h2>
     <h3 class="alert alert-warning">@ViewBag.Message</h3>
 
-    <table>
+    <table class="table table-striped">
         <thead class="thead-light">
             <tr>
                 <th scope="col">#</th>
@@ -18,17 +40,23 @@
         <tbody>
             @{int i = 1;}
             @foreach(Menu menu in ViewBag.Menus) {
-            <tr>
-                <th scope="col">@i</th>
-                <th scope="col">@menu.TipoPasto</th>
-                <th scope="col">
-                    @menu.Giorno
-                    <span class="badge" style="float:right; color:black; background-color:lightgray">
-                        @Html.ActionLink("Dettaglio","MenuGiorno",new { Id = menu.Id })
-                    </span>
-                </th>
-            </tr>
-                i++;
+                <tr>
+                    @if(menu.TipoPasto == "Pranzo") {
+                        <th scope="col">@i</th>
+                        <th scope="col">@menu.Giorno.ToShortDateString()</th>
+                        i++;
+                    }
+                </tr>
+                <tr>
+                    <th></th>
+                    <th></th>
+                    <th scope="col">
+                        @menu.TipoPasto
+                        <span class="badge" style="float:right; color:black; background-color:lightgray">
+                            @Html.ActionLink("Dettaglio","MenuGiorno",new { Id = menu.Id })
+                        </span>
+                    </th>
+                </tr>
             }
     </table>
 </div>
